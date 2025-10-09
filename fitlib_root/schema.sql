@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS Adm (
   email VARCHAR(100) NOT NULL UNIQUE,
   senha VARCHAR(255) NOT NULL, -- Armazenará a senha com hash (ex: bcrypt)
   tipo ENUM('adm', 'professor') NOT NULL DEFAULT 'professor' COMMENT 'Define o nível de permissão do usuário',
-  data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_nome_adm (nome) -- Índice para buscas por nome
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
@@ -36,7 +38,9 @@ CREATE TABLE IF NOT EXISTS Grupo_muscular (
   id_grupo_muscular INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(50) NOT NULL UNIQUE,
   regiao ENUM('superior', 'central', 'inferior') NOT NULL COMMENT 'Região corporal principal do grupo muscular',
-  icone VARCHAR(255) NULL COMMENT 'Caminho ou identificador para o ícone do grupo'
+  icone VARCHAR(255) NULL COMMENT 'Caminho ou identificador para o ícone do grupo',
+  data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
@@ -48,7 +52,10 @@ CREATE TABLE IF NOT EXISTS Equipamento (
   nome VARCHAR(100) NOT NULL,
   qrcode_equipamento VARCHAR(3) UNIQUE NULL,
   id_adm_cadastro INT NOT NULL,
-  FOREIGN KEY (id_adm_cadastro) REFERENCES Adm(id_adm)
+  data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_nome_equipamento (nome), -- Índice para buscas por nome
+  FOREIGN KEY (id_adm_cadastro) REFERENCES Adm(id_adm) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
@@ -65,9 +72,11 @@ CREATE TABLE IF NOT EXISTS Exercicio (
   id_equipamento INT NOT NULL,
   id_adm_cadastro INT NOT NULL,
   data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_grupo_muscular) REFERENCES Grupo_muscular(id_grupo_muscular),
-  FOREIGN KEY (id_equipamento) REFERENCES Equipamento(id_equipamento),
-  FOREIGN KEY (id_adm_cadastro) REFERENCES Adm(id_adm)
+  data_modificacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_nome_exercicio (nome), -- Índice para buscas por nome
+  FOREIGN KEY (id_grupo_muscular) REFERENCES Grupo_muscular(id_grupo_muscular) ON DELETE RESTRICT,
+  FOREIGN KEY (id_equipamento) REFERENCES Equipamento(id_equipamento) ON DELETE RESTRICT,
+  FOREIGN KEY (id_adm_cadastro) REFERENCES Adm(id_adm) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
@@ -82,19 +91,18 @@ CREATE TABLE IF NOT EXISTS Log (
   id_registro_afetado INT NULL COMMENT 'ID do registro na tabela_afetada',
   detalhes TEXT NULL COMMENT 'Descrição da alteração, ex: "Nome alterado de X para Y"',
   data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_adm) REFERENCES Adm(id_adm)
+  INDEX idx_acao_log (acao), -- Índice para filtrar por tipo de ação
+  FOREIGN KEY (id_adm) REFERENCES Adm(id_adm) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
 -- DADOS INICIAIS (SUGESTÃO)
--- É uma boa prática já inserir dados essenciais para o sistema funcionar.
 -- -----------------------------------------------------
 
--- 1. Criar um administrador padrão (lembre-se de trocar a senha por um hash real no PHP)
+-- 1. Criar um administrador padrão
 INSERT INTO Adm (nome, email, senha, tipo) VALUES ('Admin Padrão', 'admin@fitlib.com', '$2y$10$2Boe9V6v3L4tZlXbGrqO5eS4O/aX1YDEYVKy61K44y1PJ4sD5hOUK', 'adm');
 
--- 2. Criar o "equipamento" para exercícios livres, como combinado.
--- Supondo que o ADM com id=1 foi o que acabou de ser criado.
+-- 2. Criar o "equipamento" para exercícios livres
 INSERT INTO Equipamento (nome, qrcode_equipamento, id_adm_cadastro) VALUES ('Peso Corporal / Livre', 'LIV', 1);
 
 -- Inserir equipamentos adicionais
@@ -110,31 +118,27 @@ INSERT INTO Equipamento (nome, qrcode_equipamento, id_adm_cadastro) VALUES
 ('Mesa Flexora', 'FLE', 1),
 ('Crossover', 'CRO', 1),
 ('Cadeira Abdutora', 'CAB', 1),
-('Cadeira Adutora', 'CAD', 1);
--- Adicionado equipamento para panturrilha
-INSERT INTO Equipamento (nome, qrcode_equipamento, id_adm_cadastro) VALUES ('Máquina de Panturrilha', 'PAN', 1);
--- 3. Inserir uma lista inicial de grupos musculares.
--- Supondo que os ícones estarão em uma pasta /icons/grupo_nome.svg
+('Cadeira Adutora', 'CAD', 1),
+('Máquina de Panturrilha', 'PAN', 1);
+
+-- 3. Inserir uma lista inicial de grupos musculares
 INSERT INTO Grupo_muscular (nome, regiao, icone) VALUES
-('Peitoral', 'superior', 'public/uploads/icons/peitoral.png'),      -- ID 1
-('Costas', 'superior', 'public/uploads/icons/costas.png'),        -- ID 2
-('Ombros', 'superior', 'public/uploads/icons/ombros.png'),        -- ID 3
-('Bíceps', 'superior', 'public/uploads/icons/biceps.png'),        -- ID 4
-('Tríceps', 'superior', 'public/uploads/icons/triceps.png'),        -- ID 5
-('Abdômen', 'central', 'public/uploads/icons/abdomen.png'),       -- ID 6
-('Adutores', 'inferior', 'public/uploads/icons/adutores.png'),      -- ID 7
-('Abdutores', 'inferior', 'public/uploads/icons/abdutores.png'),      -- ID 8
-('Antebraço', 'superior', 'public/uploads/icons/antebraco.png'),    -- ID 9
-('Quadríceps', 'inferior', 'public/uploads/icons/quadriceps.png'),  -- ID 10
-('Posteriores', 'inferior', 'public/uploads/icons/posteriores.png'),  -- ID 11
-('Glúteo', 'inferior', 'public/uploads/icons/gluteo.png'),        -- ID 12
-('Lombar', 'central', 'public/uploads/icons/lombar.png'),        -- ID 13
-('Panturrilha', 'inferior', 'public/uploads/icons/panturrilha.png'); -- ID 14
+('Peitoral', 'superior', 'public/uploads/icons/peitoral.png'),
+('Costas', 'superior', 'public/uploads/icons/costas.png'),
+('Ombros', 'superior', 'public/uploads/icons/ombros.png'),
+('Bíceps', 'superior', 'public/uploads/icons/biceps.png'),
+('Tríceps', 'superior', 'public/uploads/icons/triceps.png'),
+('Abdômen', 'central', 'public/uploads/icons/abdomen.png'),
+('Adutores', 'inferior', 'public/uploads/icons/adutores.png'),
+('Abdutores', 'inferior', 'public/uploads/icons/abdutores.png'),
+('Antebraço', 'superior', 'public/uploads/icons/antebraco.png'),
+('Quadríceps', 'inferior', 'public/uploads/icons/quadriceps.png'),
+('Posteriores', 'inferior', 'public/uploads/icons/posteriores.png'),
+('Glúteo', 'inferior', 'public/uploads/icons/gluteo.png'),
+('Lombar', 'central', 'public/uploads/icons/lombar.png'),
+('Panturrilha', 'inferior', 'public/uploads/icons/panturrilha.png');
 
--- 4. Popular a tabela de exercícios com uma variedade de exemplos.
--- IDs dos Grupos Musculares: 1-Peitoral, 2-Costas, 3-Pernas, 4-Ombros, 5-Bíceps, 6-Tríceps, 7-Abdômen, 8-Adutores, 9-Abdutores
--- IDs dos Equipamentos: 1-Livre, 2-Halteres, 3-Barra, 4-Banco, 5-Smith, 6-Puxador, 7-Remada, 8-Leg Press, 9-Extensora, 10-Flexora, 11-Crossover, 12-Abdutora, 13-Adutora
-
+-- 4. Popular a tabela de exercícios com uma variedade de exemplos
 -- Peitoral (ID: 1)
 INSERT INTO Exercicio (nome, descricao, avisos, gif_path, id_grupo_muscular, id_equipamento, id_adm_cadastro) VALUES
 ('Supino Reto com Barra', 'Deitado no banco, desça a barra até o peito e empurre para cima.', 'Mantenha os cotovelos em um ângulo de 90 graus.', '/gifs/supino_reto_barra.gif', 1, 3, 1),
