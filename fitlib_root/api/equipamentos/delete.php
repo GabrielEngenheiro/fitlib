@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/api/login.php');
+    header('Location: /login.php');
     exit;
 }
 
@@ -12,8 +12,7 @@ require_once __DIR__ . '/../../config/database.php';
 $id_equipamento = $_GET['id'] ?? null;
 
 if (!$id_equipamento) {
-    header('Location: index.php');
-    header('Location: /fitlib_root/api/equipamentos');
+    header('Location: /equipamentos');
     exit;
 }
 
@@ -44,5 +43,5 @@ try {
 }
 
 // Redireciona de volta para a página de listagem em qualquer caso
-header('Location: /fitlib_root/api/equipamentos');
+header('Location: /equipamentos');
 exit;

@@ -1,7 +1,7 @@
 <?php
 // Controle de Acesso: Apenas administradores podem acessar esta página.
 if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
-    header('Location: /fitlib_root/api/'); // Redireciona para o dashboard
+    header('Location: /'); // Redireciona para o dashboard
     exit;
 }
 require_once __DIR__ . '/../../config/database.php';
@@ -25,11 +25,11 @@ if (isset($_GET['id'])) {
 
 <div class="page-header">
     <h1><?= htmlspecialchars($pageTitle) ?></h1>
-    <a href="/fitlib_root/api/usuarios" class="btn btn-secondary">Voltar</a>
+    <a href="/usuarios" class="btn btn-secondary">Voltar</a>
 </div>
 
 <div class="card">
-    <form action="/fitlib_root/api/usuarios/save" method="POST">
+    <form action="/usuarios/save" method="POST">
         <?php if ($isEditing): ?>
             <input type="hidden" name="id_adm" value="<?= $usuario['id_adm'] ?>">
         <?php endif; ?>

@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/api/login.php');
+    header('Location: /login.php');
     exit;
 }
 
@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../config/database.php';
 $id_grupo_muscular = $_GET['id'] ?? null;
 
 if (!$id_grupo_muscular) {
-    header('Location: /fitlib_root/api/grupos_musculares');
+    header('Location: /grupos_musculares');
     exit;
 }
 
@@ -23,7 +23,7 @@ try {
     $stmt->execute(['id' => $id_grupo_muscular]);
 
     // Redireciona para a página de listagem
-    header('Location: /fitlib_root/api/grupos_musculares');
+    header('Location: /grupos_musculares');
     exit;
 
 } catch (PDOException $e) {

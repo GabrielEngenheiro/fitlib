@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/api/login.php');
+    header('Location: /login.php');
     exit;
 }
 
@@ -48,10 +48,10 @@ try {
 <div class="card">
     <div class="card-header">
         <h2>Lista de Grupos</h2>
-        <a href="/fitlib_root/api/grupos_musculares/form" class="btn btn-add">Adicionar Novo</a>
+        <a href="/grupos_musculares/form" class="btn btn-add">Adicionar Novo</a>
     </div>
 
-    <form method="GET" action="/fitlib_root/api/grupos_musculares" class="filter-form">
+    <form method="GET" action="/grupos_musculares" class="filter-form">
         <div class="filter-group">
             <input type="text" name="search" placeholder="Buscar por nome..." value="<?= htmlspecialchars($search) ?>">
         </div>
@@ -76,8 +76,8 @@ try {
                 <tr>
                     <td><?= htmlspecialchars($grupo['nome']) ?></td>
                     <td>
-                        <a href="/fitlib_root/api/grupos_musculares/form?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-edit">Editar</a>
-                        <a href="/fitlib_root/api/grupos_musculares/delete?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este grupo muscular?');">Excluir</a>
+                        <a href="/grupos_musculares/form?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-edit">Editar</a>
+                        <a href="/grupos_musculares/delete?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este grupo muscular?');">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
