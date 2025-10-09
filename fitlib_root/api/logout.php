@@ -13,5 +13,5 @@ $_SESSION = [];
 session_destroy();
 
 // 4. Redireciona o usuário para a página de login.
-header('Location: /fitlib_root/admin/login.php');
+header('Location: /fitlib_root/api/login.php');
 exit;

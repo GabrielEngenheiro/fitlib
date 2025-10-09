@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/admin/login.php');
+    header('Location: /fitlib_root/api/login.php');
     exit;
 }
 
@@ -18,7 +18,7 @@ try {
     $sort = $_GET['sort'] ?? 'nome_asc';
 
     // Constrói a query base
-    $query = "SELECT * FROM Equipamento";
+    $query = "SELECT * FROM Grupo_muscular";
     $params = [];
 
     // Adiciona o filtro de busca se o campo não estiver vazio
@@ -33,27 +33,25 @@ try {
 
     $stmt = $pdo->prepare($query);
     $stmt->execute($params);
-    $equipamentos = $stmt->fetchAll();
+    $grupos = $stmt->fetchAll();
+
 } catch (PDOException $e) {
     // Em caso de erro, exibe uma mensagem
-    die("Erro ao buscar equipamentos: " . $e->getMessage());
+    die("Erro ao buscar grupos musculares: " . $e->getMessage());
 }
 ?>
 
-<h1>Gerenciar Equipamentos</h1>
+<h1>Gerenciar Grupos Musculares</h1>
 
 <!-- Placeholder para futuras mensagens de status -->
 
 <div class="card">
     <div class="card-header">
-        <h2>Lista de Equipamentos</h2>
-        <div class="card-header-actions">
-            <a href="https://qr.io/pt/?gad_source=1&gad_campaignid=22781241288&gclid=CjwKCAjwiY_GBhBEEiwAFaghvhj2OBS1Ywkp9_YAv7GYGciEVUV9bsX0S2UuaDW6DpSATes1VKasfxoCEikQAvD_BwE" target="_blank" class="btn btn-secondary">Gerar QR Code</a>
-            <a href="form.php" class="btn btn-add">Adicionar Novo</a>
-        </div>
+        <h2>Lista de Grupos</h2>
+        <a href="/fitlib_root/api/grupos_musculares/form" class="btn btn-add">Adicionar Novo</a>
     </div>
 
-    <form method="GET" action="index.php" class="filter-form">
+    <form method="GET" action="/fitlib_root/api/grupos_musculares" class="filter-form">
         <div class="filter-group">
             <input type="text" name="search" placeholder="Buscar por nome..." value="<?= htmlspecialchars($search) ?>">
         </div>
@@ -70,23 +68,19 @@ try {
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>QR Code</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($equipamentos as $equipamento): ?>
+            <?php foreach ($grupos as $grupo): ?>
                 <tr>
-                    <td><?= htmlspecialchars($equipamento['nome']) ?></td>
-                    <td><?= htmlspecialchars($equipamento['qrcode_equipamento']) ?></td>
+                    <td><?= htmlspecialchars($grupo['nome']) ?></td>
                     <td>
-                        <a href="form.php?id=<?= $equipamento['id_equipamento'] ?>" class="btn btn-edit">Editar</a>
-                        <a href="delete.php?id=<?= $equipamento['id_equipamento'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este equipamento?');">Excluir</a>
+                        <a href="/fitlib_root/api/grupos_musculares/form?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-edit">Editar</a>
+                        <a href="/fitlib_root/api/grupos_musculares/delete?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este grupo muscular?');">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </div>
-
-<?php include __DIR__ . '/../includes/footer.php'; ?>

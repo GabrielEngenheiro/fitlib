@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/admin/login.php');
+    header('Location: /fitlib_root/api/login.php');
     exit;
 }
 
@@ -33,11 +33,11 @@ if (isset($_GET['id'])) {
 
 <div class="page-header">
     <h1><?= htmlspecialchars($pageTitle) ?></h1>
-    <a href="/fitlib_root/admin/grupos_musculares" class="btn btn-secondary">Voltar</a>
+    <a href="/fitlib_root/api/grupos_musculares" class="btn btn-secondary">Voltar</a>
 </div>
 
 <div class="card">
-    <form action="/fitlib_root/admin/grupos_musculares/save" method="POST">
+    <form action="/fitlib_root/api/grupos_musculares/save" method="POST">
         <?php if ($isEditing): ?>
             <input type="hidden" name="id_grupo_muscular" value="<?= $grupo['id_grupo_muscular'] ?>">
         <?php endif; ?>

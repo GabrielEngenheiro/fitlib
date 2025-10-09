@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/admin/login.php');
+    header('Location: /fitlib_root/api/login.php');
     exit;
 }
 
@@ -13,7 +13,7 @@ $id_equipamento = $_GET['id'] ?? null;
 
 if (!$id_equipamento) {
     header('Location: index.php');
-    header('Location: /fitlib_root/admin/equipamentos');
+    header('Location: /fitlib_root/api/equipamentos');
     exit;
 }
 
@@ -44,5 +44,5 @@ try {
 }
 
 // Redireciona de volta para a página de listagem em qualquer caso
-header('Location: /fitlib_root/admin/equipamentos');
+header('Location: /fitlib_root/api/equipamentos');
 exit;

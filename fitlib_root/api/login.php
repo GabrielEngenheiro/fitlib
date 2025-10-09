@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/database.php';
 
 // Se o usuário já estiver logado, redireciona para o dashboard
 if (isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/admin/');
+    header('Location: /fitlib_root/api/');
     exit;
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['id_adm'] = $admin['id_adm'];
             $_SESSION['nome_adm'] = $admin['nome'];
             $_SESSION['tipo_adm'] = $admin['tipo'];
-            header('Location: /fitlib_root/admin/');
+            header('Location: /fitlib_root/api/');
             exit;
         } else {
             // Credenciais inválidas
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Painel FitLib</title>
-    <link rel="stylesheet" href="/fitlib_root/admin/assets/css/login.css">
+    <link rel="stylesheet" href="/fitlib_root/api/assets/css/login.css">
 </head>
 <body>
     <div class="login-container">

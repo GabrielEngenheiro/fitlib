@@ -2,13 +2,13 @@
 session_start();
 // Controle de Acesso: Apenas administradores podem executar esta ação.
 if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
-    header('Location: /fitlib_root/admin/'); // Redireciona para o dashboard
+    header('Location: /fitlib_root/api/'); // Redireciona para o dashboard
     exit;
 }
 require_once __DIR__ . '/../../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /fitlib_root/admin/usuarios');
+    header('Location: /fitlib_root/api/usuarios');
     exit;
 }
 
@@ -45,7 +45,7 @@ try {
     $stmt->bindParam(':tipo', $tipo);
     $stmt->execute();
 
-    header('Location: /fitlib_root/admin/usuarios');
+    header('Location: /fitlib_root/api/usuarios');
     exit;
 
 } catch (PDOException $e) {

@@ -2,12 +2,12 @@
 
 session_start();
 if (!isset($_SESSION['id_adm'])) {
-    header('Location: /fitlib_root/admin/login.php');
+    header('Location: /fitlib_root/api/login.php');
     exit;
 }
 
 // Define uma constante para o caminho base do admin para facilitar os links.
-define('ADMIN_BASE_URL', '/fitlib_root/admin');
+define('ADMIN_BASE_URL', '/fitlib_root/api');
 
 // 2. INCLUI O CABEÇALHO DA PÁGINA (Layout)
 include 'includes/header.php';
