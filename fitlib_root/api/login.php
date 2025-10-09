@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/config/database.php';
 
 // Se o usuário já estiver logado, redireciona para o dashboard
 if (isset($_SESSION['id_adm'])) {
