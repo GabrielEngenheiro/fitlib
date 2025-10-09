@@ -6,6 +6,18 @@
   },
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/api/assets/$1"
+    },
+    {
+      "src": "/login.php",
+      "dest": "/api/login.php"
+    },
+    {
+      "src": "/logout.php",
+      "dest": "/api/logout.php"
+    },
+    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
