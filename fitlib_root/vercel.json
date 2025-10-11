@@ -11,14 +11,32 @@
       "source": "/api/v1/(.*)",
       "destination": "/api/v1/$1"
     },
+
     {
-      "source": "/(.*)/save",
-      "destination": "/api/$1/save.php"
+      "source": "/exercicios",
+      "destination": "/api/exercicios/index.php"
     },
     {
-      "source": "/(.*)/delete",
-      "destination": "/api/$1/delete.php"
+      "source": "/exercicios/(.*)",
+      "destination": "/api/exercicios/$1"
     },
+    {
+      "source": "/equipamentos",
+      "destination": "/api/equipamentos/index.php"
+    },
+    {
+      "source": "/equipamentos/(.*)",
+      "destination": "/api/equipamentos/$1"
+    },
+    {
+      "source": "/grupos_musculares",
+      "destination": "/api/grupos_musculares/index.php"
+    },
+    {
+      "source": "/grupos_musculares/(.*)",
+      "destination": "/api/grupos_musculares/$1"
+    },
+
     {
       "source": "/login.php",
       "destination": "/api/login.php"
@@ -27,9 +45,10 @@
       "source": "/logout.php",
       "destination": "/api/logout.php"
     },
+    
     {
-      "source": "/(.*)",
-      "destination": "/api/index.php?url=$1"
+      "source": "/",
+      "destination": "/api/index.php"
     }
   ],
   "headers": [
