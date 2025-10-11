@@ -8,16 +8,16 @@
   },
   "rewrites": [
     {
-      "source": "/api/v1/:path*",
-      "destination": "/api/v1/:path*"
+      "source": "/api/v1/(.*)",
+      "destination": "/api/v1/$1"
     },
     {
-      "source": "/:path*/save",
-      "destination": "/api/:path*/save.php"
+      "source": "/(.*)/save",
+      "destination": "/api/$1/save.php"
     },
     {
-      "source": "/:path*/delete",
-      "destination": "/api/:path*/delete.php"
+      "source": "/(.*)/delete",
+      "destination": "/api/$1/delete.php"
     },
     {
       "source": "/login.php",
@@ -28,8 +28,8 @@
       "destination": "/api/logout.php"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api/index.php?url=$1"
+      "source": "/",
+      "destination": "/api/index.php"
     }
   ],
   "headers": [
