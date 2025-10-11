@@ -29,7 +29,7 @@ try {
         if (!empty($currentSearch)) {
             $params['search'] = $currentSearch;
         }
-        return 'index.php?' . http_build_query($params);
+        return '/exercicios?' . http_build_query($params);
     }
 
     // Função auxiliar para exibir o ícone de ordenação
@@ -90,7 +90,7 @@ try {
         <a href="/exercicios/form" class="btn btn-add">Adicionar Novo</a>
     </div>
 
-    <form method="GET" action="index.php" class="filter-form">
+    <form method="GET" action="/exercicios" class="filter-form">
         <div class="filter-group">
             <input type="text" name="search" placeholder="Buscar por nome do exercício..." value="<?= htmlspecialchars($search) ?>">
         </div>

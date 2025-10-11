@@ -55,7 +55,7 @@ try {
         </div>
     </div>
 
-    <form method="GET" action="index.php" class="filter-form">
+    <form method="GET" action="/equipamentos" class="filter-form">
         <div class="filter-group">
             <input type="text" name="search" placeholder="Buscar por nome..." value="<?= htmlspecialchars($search) ?>">
         </div>
