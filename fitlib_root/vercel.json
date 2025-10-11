@@ -13,7 +13,7 @@
     },
     {
       "source": "/assets/(.*)",
-      "destination": "/public/assets/$1"
+      "destination": "/assets/$1"
     },
 
     {
