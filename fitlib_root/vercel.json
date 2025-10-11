@@ -28,8 +28,8 @@
       "destination": "/api/logout.php"
     },
     {
-      "source": "/",
-      "destination": "/api/index.php"
+      "source": "/(.*)",
+      "destination": "/api/index.php?url=$1"
     }
   ],
   "headers": [
