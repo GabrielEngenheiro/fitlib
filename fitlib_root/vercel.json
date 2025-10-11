@@ -13,40 +13,7 @@
     },
     {
       "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-
-    {
-      "source": "/exercicios",
-      "destination": "/api/exercicios/index.php"
-    },
-    {
-      "source": "/exercicios/(.*)",
-      "destination": "/api/exercicios/$1"
-    },
-    {
-      "source": "/equipamentos",
-      "destination": "/api/equipamentos/index.php"
-    },
-    {
-      "source": "/equipamentos/(.*)",
-      "destination": "/api/equipamentos/$1"
-    },
-    {
-      "source": "/grupos_musculares",
-      "destination": "/api/grupos_musculares/index.php"
-    },
-    {
-      "source": "/grupos_musculares/(.*)",
-      "destination": "/api/grupos_musculares/$1"
-    },
-    {
-      "source": "/usuarios",
-      "destination": "/api/usuarios/index.php"
-    },
-    {
-      "source": "/usuarios/(.*)",
-      "destination": "/api/usuarios/$1"
+      "destination": "/public/assets/$1"
     },
 
     {
@@ -57,7 +24,6 @@
       "source": "/logout.php",
       "destination": "/api/logout.php"
     },
-
     {
       "source": "/(.*)",
       "destination": "/api/index.php?url=$1"

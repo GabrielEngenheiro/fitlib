@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="alert-danger"><?= htmlspecialchars($error_message) ?></div>
             <?php endif; ?>
 
-            <form action="login.php" method="POST">
+            <form action="/login.php" method="POST">
                 <div class="input-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" required>
