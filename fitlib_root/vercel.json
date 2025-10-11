@@ -4,30 +4,10 @@
       "runtime": "vercel-php@0.7.3"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)/save.php",
-      "dest": "/api/$1/save.php"
-    },
-    {
-      "src": "/(.*)/delete.php",
-      "dest": "/api/$1/delete.php"
-    },
-    {
-      "src": "/login.php",
-      "dest": "/api/login.php"
-    },
-    {
-      "src": "/logout.php",
-      "dest": "/api/logout.php"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.php?url=$1"
+      "source": "/api/v1/(.*)",
+      "destination": "/api/v1/$1"
     }
   ]
 }
