@@ -6,7 +6,6 @@ if (!isset($_SESSION['id_adm'])) {
     exit;
 }
 
-include __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../config/database.php';
 
 /** @var PDO $pdo */
@@ -82,5 +81,3 @@ $equipamentos = $pdo->query("SELECT * FROM Equipamento ORDER BY nome")->fetchAll
 
     <button type="submit" class="btn btn-save">Salvar</button>
 </form>
-
-<?php include __DIR__ . '/../includes/footer.php'; ?>

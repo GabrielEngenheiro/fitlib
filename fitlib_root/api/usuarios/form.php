@@ -4,7 +4,7 @@ if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
     header('Location: /'); // Redireciona para o dashboard
     exit;
 }
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 /** @var PDO $pdo */
 

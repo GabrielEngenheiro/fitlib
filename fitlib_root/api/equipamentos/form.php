@@ -6,7 +6,6 @@ if (!isset($_SESSION['id_adm'])) {
     exit;
 }
 
-include __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../config/database.php';
 
 /** @var PDO $pdo */
@@ -50,5 +49,3 @@ if (isset($_GET['id'])) {
         <button type="submit" class="btn btn-save">Salvar</button>
     </form>
 </div>
-
-<?php include __DIR__ . '/../includes/footer.php'; ?>
