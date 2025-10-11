@@ -46,7 +46,7 @@ $equipamentos = $pdo->query("SELECT * FROM Equipamento ORDER BY nome")->fetchAll
 
 <h1><?= htmlspecialchars($pageTitle) ?></h1>
 
-<form action="save.php" method="POST">
+<form action="/exercicios/save.php" method="POST">
     <?php if ($isEditing): ?>
         <input type="hidden" name="id_exercicio" value="<?= $exercicio['id_exercicio'] ?>">
     <?php endif; ?>

@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
 </div>
 
 <div class="card">
-    <form action="/usuarios/save" method="POST">
+    <form action="/usuarios/save.php" method="POST">
         <?php if ($isEditing): ?>
             <input type="hidden" name="id_adm" value="<?= $usuario['id_adm'] ?>">
         <?php endif; ?>

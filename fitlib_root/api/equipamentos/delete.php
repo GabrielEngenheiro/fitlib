@@ -27,7 +27,7 @@ try {
     $stmt->execute(['id' => $id_equipamento]);
 
     // Redireciona para a página de listagem
-    header('Location: index.php');
+    header('Location: /equipamentos');
     exit;
     // Define uma mensagem de sucesso
     $_SESSION['flash_message'] = [

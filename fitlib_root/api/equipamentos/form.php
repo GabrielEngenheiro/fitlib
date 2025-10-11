@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
 <h1><?= htmlspecialchars($pageTitle) ?></h1>
 
 <div class="card">
-    <form action="save.php" method="POST">
+    <form action="/equipamentos/save.php" method="POST">
         <?php if ($isEditing): ?>
             <input type="hidden" name="id_equipamento" value="<?= $equipamento['id_equipamento'] ?>">
         <?php endif; ?>

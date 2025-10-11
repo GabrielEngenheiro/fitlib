@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
 </div>
 
 <div class="card">
-    <form action="/grupos_musculares/save" method="POST">
+    <form action="/grupos_musculares/save.php" method="POST">
         <?php if ($isEditing): ?>
             <input type="hidden" name="id_grupo_muscular" value="<?= $grupo['id_grupo_muscular'] ?>">
         <?php endif; ?>

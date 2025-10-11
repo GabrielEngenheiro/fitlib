@@ -16,7 +16,7 @@ require_once __DIR__ . '/../config/database.php';
 $id_exercicio = $_GET['id'] ?? null;
 
 if (!$id_exercicio) {
-    header('Location: index.php');
+    header('Location: /exercicios');
     exit;
 }
 
@@ -27,7 +27,7 @@ try {
     $stmt->execute(['id' => $id_exercicio]);
 
     // Redireciona para a página de listagem
-    header('Location: index.php');
+    header('Location: /exercicios');
     exit;
 
 } catch (PDOException $e) {
