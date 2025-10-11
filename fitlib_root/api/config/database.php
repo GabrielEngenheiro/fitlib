@@ -1,33 +1,44 @@
 <?php
 
 /**
- * Arquivo de configuração e conexão com o banco de dados.
- * Este arquivo será incluído em todos os scripts que precisam de acesso ao DB.
+ * Arquivo de conexão com o banco de dados para o ambiente de produção (Vercel + Railway).
+ * Lê as credenciais das variáveis de ambiente configuradas na Vercel.
  */
 
-// Definição de constantes para as credenciais do banco de dados.
-// Altere os valores conforme a sua configuração do Laragon/MySQL.
-define('DB_HOST', '127.0.0.1'); // ou 'localhost'
-define('DB_NAME', 'fitlib_db');
-define('DB_USER', 'root');
-define('DB_PASS', ''); // A senha padrão do Laragon para o root é vazia.
-define('DB_CHARSET', 'utf8mb4');
+// 1. LER AS VARIÁVEIS DE AMBIENTE
+// Lendo cada uma das variáveis que você configurou na imagem.
+$host = getenv('DB_HOST');
+$port = getenv('DB_PORT');
+$dbname = getenv('DB_NAME');
+$user = getenv('DB_USERNAME');
+$pass = getenv('DB_PASSWORD');
 
-$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+// Verifica se todas as variáveis foram carregadas com sucesso.
+if ($host === false || $port === false || $dbname === false || $user === false || $pass === false) {
+    die("Erro: Uma ou mais variáveis de ambiente do banco de dados não foram definidas na Vercel.");
+}
 
+$charset = 'utf8mb4';
+
+// 2. CONFIGURAR OPÇÕES DE CONEXÃO (INCLUINDO SSL)
+// Opções essenciais para a conexão segura com o Railway e para o PDO.
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Lança exceções em caso de erro.
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       // Retorna os resultados como array associativo.
-    PDO::ATTR_EMULATE_PREPARES   => false,                  // Usa prepared statements nativos do DB.
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::MYSQL_ATTR_SSL_CA       => '/etc/ssl/certs/ca-certificates.crt', // Caminho padrão de certificados no ambiente da Vercel
+    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false, // Simplifica a verificação SSL para alguns provedores
 ];
 
-$pdo = null;
+// 3. MONTAR A STRING DE CONEXÃO (DSN)
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=$charset";
+
+// 4. TENTAR A CONEXÃO COM O BANCO DE DADOS
 try {
-    // Cria a instância do PDO para a conexão.
-    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+    // Cria a instância do PDO que será usada em todo o sistema.
+    $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    // Em caso de falha na conexão, encerra o script e exibe uma mensagem de erro genérica.
-    // Em um ambiente de produção, você logaria o erro em vez de exibi-lo.
-    http_response_code(500);
+    // Em caso de falha, exibe uma mensagem de erro genérica e interrompe o script.
+    // O ideal em um sistema real seria logar o erro em vez de exibi-lo na tela.
     die("Erro: Falha na conexão com o banco de dados.");
 }
