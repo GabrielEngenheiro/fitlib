@@ -29,5 +29,5 @@
       "src": "/(.*)",
       "dest": "/api/index.php?url=$1"
     }
-  ],
+  ]
 }
