@@ -82,8 +82,8 @@ try {
                     <td><?= htmlspecialchars($equipamento['nome']) ?></td>
                     <td><?= htmlspecialchars($equipamento['qrcode_equipamento']) ?></td>
                     <td>
-                        <a href="form.php?id=<?= $equipamento['id_equipamento'] ?>" class="btn btn-edit">Editar</a>
-                        <a href="delete.php?id=<?= $equipamento['id_equipamento'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este equipamento?');">Excluir</a>
+                        <a href="/equipamentos/form.php?id=<?= $equipamento['id_equipamento'] ?>" class="btn btn-edit">Editar</a>
+                        <a href="/equipamentos/delete.php?id=<?= $equipamento['id_equipamento'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este equipamento?');">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

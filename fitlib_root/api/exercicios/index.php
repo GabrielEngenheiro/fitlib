@@ -123,8 +123,8 @@ try {
                     <td><?= htmlspecialchars($exercicio['grupo_muscular']) ?></td>
                     <td><?= htmlspecialchars($exercicio['equipamento']) ?></td>
                     <td>
-                        <a href="form.php?id=<?= $exercicio['id_exercicio'] ?>" class="btn btn-edit">Editar</a>
-                        <a href="delete.php?id=<?= $exercicio['id_exercicio'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este exercício?');">Excluir</a>
+                        <a href="/exercicios/form.php?id=<?= $exercicio['id_exercicio'] ?>" class="btn btn-edit">Editar</a>
+                        <a href="/exercicios/delete.php?id=<?= $exercicio['id_exercicio'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este exercício?');">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
