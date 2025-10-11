@@ -10,11 +10,11 @@
       "dest": "/assets/$1"
     },
     {
-      "src": "/(.*)/save.php",
+      "src": "/(.*)/save",
       "dest": "/api/$1/save.php"
     },
     {
-      "src": "/(.*)/delete.php",
+      "src": "/(.*)/delete",
       "dest": "/api/$1/delete.php"
     },
     {
