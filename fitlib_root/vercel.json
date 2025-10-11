@@ -6,6 +6,10 @@
   },
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
       "src": "/login.php",
       "dest": "/api/login.php"
     },
