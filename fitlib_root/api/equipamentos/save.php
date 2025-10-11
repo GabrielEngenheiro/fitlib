@@ -14,7 +14,7 @@ require_once __DIR__ . '/../config/database.php';
 
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php');
+    header('Location: /equipamentos');
     exit;
 }
 
@@ -48,7 +48,7 @@ try {
     $stmt->execute();
 
     // Redireciona para a página de listagem após o sucesso
-    header('Location: index.php');
+    header('Location: equipamentos');
     exit;
 
 } catch (PDOException $e) {
