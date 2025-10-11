@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/config/session_handler.php';
+require_once __DIR__ . '/../config/session_handler.php';
 session_start();
 if (!isset($_SESSION['id_adm'])) {
     header('Location: /login.php');
     exit;
 }
 
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

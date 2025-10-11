@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/config/session_handler.php';
+require_once __DIR__ . '/../config/session_handler.php';
 session_start();
 if (!isset($_SESSION['id_adm'])) {
     header('Location: /login.php');
     exit;
 }
 
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 // Pega o ID da URL e valida
 $id_equipamento = $_GET['id'] ?? null;

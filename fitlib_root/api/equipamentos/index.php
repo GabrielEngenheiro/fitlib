@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/config/session_handler.php';
+require_once __DIR__ . '/../config/session_handler.php';
 session_start();
 if (!isset($_SESSION['id_adm'])) {
     header('Location: /login.php');
@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_adm'])) {
 
 // Inclui o header e a conexão com o banco
 include __DIR__ . '/../includes/header.php';
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 try {
     /** @var PDO $pdo */

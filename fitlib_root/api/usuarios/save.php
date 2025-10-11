@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/config/session_handler.php';
+require_once __DIR__ . '/../config/session_handler.php';
 session_start();
 // Controle de Acesso: Apenas administradores podem executar esta ação.
 if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
     header('Location: /'); // Redireciona para o dashboard
     exit;
 }
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: /usuarios');
