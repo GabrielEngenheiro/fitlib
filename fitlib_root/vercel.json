@@ -36,6 +36,14 @@
       "source": "/grupos_musculares/(.*)",
       "destination": "/api/grupos_musculares/$1"
     },
+    {
+      "source": "/usuarios",
+      "destination": "/api/usuarios/index.php"
+    },
+    {
+      "source": "/usuarios/(.*)",
+      "destination": "/api/usuarios/$1"
+    },
 
     {
       "source": "/login.php",
@@ -45,7 +53,7 @@
       "source": "/logout.php",
       "destination": "/api/logout.php"
     },
-    
+
     {
       "source": "/",
       "destination": "/api/index.php"

@@ -15,7 +15,7 @@ require_once __DIR__ . '/../config/database.php';
 // Verifica se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // Se não for POST, redireciona para a lista
-    header('Location: index.php');
+    header('Location: /exercicios');
     exit;
 }
 
@@ -65,7 +65,7 @@ try {
     $stmt->execute();
 
     // Redireciona para a página de listagem após o sucesso
-    header('Location: index.php');
+    header('Location: /exercicios');
     exit;
 
 } catch (PDOException $e) {
