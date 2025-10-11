@@ -51,7 +51,7 @@ try {
         <h2>Lista de Equipamentos</h2>
         <div class="card-header-actions">
             <a href="https://qr.io/pt/?gad_source=1&gad_campaignid=22781241288&gclid=CjwKCAjwiY_GBhBEEiwAFaghvhj2OBS1Ywkp9_YAv7GYGciEVUV9bsX0S2UuaDW6DpSATes1VKasfxoCEikQAvD_BwE" target="_blank" class="btn btn-secondary">Gerar QR Code</a>
-            <a href="form.php" class="btn btn-add">Adicionar Novo</a>
+            <a href="/equipamentos/form" class="btn btn-add">Adicionar Novo</a>
         </div>
     </div>
 

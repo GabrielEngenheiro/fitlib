@@ -87,7 +87,7 @@ try {
 <div class="card">
     <div class="card-header">
         <h2>Lista de Exercícios</h2>
-        <a href="form.php" class="btn btn-add">Adicionar Novo</a>
+        <a href="/exercicios/form" class="btn btn-add">Adicionar Novo</a>
     </div>
 
     <form method="GET" action="index.php" class="filter-form">
