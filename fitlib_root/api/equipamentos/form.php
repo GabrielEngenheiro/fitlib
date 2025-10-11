@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
         <label for="nome">Nome do Equipamento</label>
         <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($equipamento['nome']) ?>" required>
 
-        <label for="qrcode_equipamento">QR Code (3 caracteres, opcional)</label>
+        <label for="qrcode_equipamento">QR Code (3 caracteres maiusculos)</label>
         <input type="text" id="qrcode_equipamento" name="qrcode_equipamento" value="<?= htmlspecialchars($equipamento['qrcode_equipamento'] ?? '') ?>" maxlength="3" placeholder="Ex: LEG">
 
         <button type="submit" class="btn btn-save">Salvar</button>
