@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config/session_handler.php';
 /**
  * Script para realizar o logout do administrador.
  */

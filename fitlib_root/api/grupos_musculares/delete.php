@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/config/session_handler.php';
 session_start();
 if (!isset($_SESSION['id_adm'])) {
     header('Location: /login.php');

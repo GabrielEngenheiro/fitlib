@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config/session_handler.php';
 session_start();
 // Controle de Acesso: Apenas administradores podem executar esta ação.
 if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
