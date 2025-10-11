@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../config/session_handler.php';
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Controle de Acesso: Apenas administradores podem executar esta ação.
 if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
     header('Location: /'); // Redireciona para o dashboard
