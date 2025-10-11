@@ -9,6 +9,11 @@
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
     },
+
+    { "src": "/api/v1/(.*)",
+      "dest": "/api/v1/$1"
+    },
+    // Regras para os scripts de ação do painel admin
     {
       "src": "/(.*)/save.php",
       "dest": "/api/$1/save.php"
@@ -17,6 +22,7 @@
       "src": "/(.*)/delete.php",
       "dest": "/api/$1/delete.php"
     },
+    // Regras para páginas específicas do painel admin
     {
       "src": "/login.php",
       "dest": "/api/login.php"
@@ -25,6 +31,7 @@
       "src": "/logout.php",
       "dest": "/api/logout.php"
     },
+    // Regra principal que envia o resto para o roteador do painel admin
     {
       "src": "/(.*)",
       "dest": "/api/index.php?url=$1"
