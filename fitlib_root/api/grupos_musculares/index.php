@@ -1,13 +1,16 @@
 <?php
 require_once __DIR__ . '/../config/session_handler.php';
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['id_adm'])) {
     header('Location: /login.php');
     exit;
 }
 
-// Inclui o header e a conexão com o banco
-include __DIR__ . '/../includes/header.php';
+// Inclui a conexão com o banco
 require_once __DIR__ . '/../config/database.php';
 
 try {

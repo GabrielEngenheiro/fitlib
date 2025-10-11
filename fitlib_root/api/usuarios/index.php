@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../config/session_handler.php';
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Controle de Acesso: Apenas administradores podem acessar esta página.
 if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
     echo "Você não tem permissão para acessar esta página.";
@@ -8,7 +12,6 @@ if (!isset($_SESSION['tipo_adm']) || $_SESSION['tipo_adm'] !== 'adm') {
     exit;
 }
 require_once __DIR__ . '/../config/database.php';
-include __DIR__ . '/../includes/header.php';
 
 try {
     /** @var PDO $pdo */

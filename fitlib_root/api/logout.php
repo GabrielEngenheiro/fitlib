@@ -5,7 +5,9 @@ require_once __DIR__ . '/config/session_handler.php';
  */
 
 // 1. Inicia a sessão para poder manipulá-la.
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // 2. Limpa todas as variáveis da sessão (ex: $_SESSION['id_adm']).
 $_SESSION = [];
