@@ -25,12 +25,18 @@ $pageTitle = 'Dashboard'; // Título padrão
 if (empty($url)) {
     $filePath = $baseDir . '/pages/dashboard.php';
 } else {
-    // Tenta encontrar um arquivo .php com o nome da URL (ex: /usuarios/form -> /usuarios/form.php)
-    $potentialPath = $baseDir . '/' . $url . '.php';
+    // Verificação inteligente: se a URL já termina com .php, usa o caminho diretamente.
+    if (substr($url, -4) === '.php') {
+        $potentialPath = $baseDir . '/' . $url;
+    } else {
+        // Tenta encontrar um arquivo .php com o nome da URL (ex: /usuarios/form -> api/usuarios/form.php)
+        $potentialPath = $baseDir . '/' . $url . '.php';
+    }
+
     if (file_exists($potentialPath)) {
         $filePath = $potentialPath;
     } else {
-        // Se não encontrar, tenta um index.php dentro de um diretório (ex: /usuarios -> /usuarios/index.php)
+        // Se não encontrar, tenta um index.php dentro de um diretório (ex: /usuarios -> api/usuarios/index.php)
         $potentialPath = $baseDir . '/' . $url . '/index.php';
         if (file_exists($potentialPath)) {
             $filePath = $potentialPath;
