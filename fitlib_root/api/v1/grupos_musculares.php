@@ -14,7 +14,7 @@ require_once __DIR__ . '/../config/database.php';
 try {
     /** @var PDO $pdo */ 
     // Prepara e executa a consulta SQL
-    $query = "SELECT id_grupo_muscular, nome, regiao FROM Grupo_muscular ORDER BY nome ASC";
+    $query = "SELECT id_grupo_muscular, nome, regiao, icone FROM Grupo_muscular ORDER BY nome ASC";
     $stmt = $pdo->query($query);
     $grupos = $stmt->fetchAll();
 
