@@ -19,7 +19,7 @@ define('ADMIN_BASE_URL', '');
 $url = trim($_GET['url'] ?? '', '/');
 $baseDir = __DIR__;
 $filePath = '';
-$pageTitle = 'Dashboard'; // Título padrão
+$pageTitle = 'Dashboard';
 
 // Se a URL estiver vazia, carregamos o dashboard.
 if (empty($url)) {

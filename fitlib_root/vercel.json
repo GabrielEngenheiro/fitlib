@@ -25,12 +25,12 @@
       "destination": "/api/logout.php"
     },
     {
-      "source": "/exercicios/save.php",
-      "destination": "/api/exercicios/save.php"
+      "source": "/(.*)/save.php",
+      "destination": "/api/$1/save.php"
     },
     {
-      "source": "/exercicios/delete.php",
-      "destination": "/api/exercicios/delete.php"
+      "source": "/(.*)/delete.php",
+      "destination": "/api/$1/delete.php"
     },
     {
       "source": "/(.*)",
