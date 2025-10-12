@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/**/*.php": {
-      "runtime": "vercel-php@0.7.3",
+      "runtime": "vercel-php@0.7.4",
       "maxDuration": 10
     }
   },
@@ -25,8 +25,16 @@
       "destination": "/api/logout.php"
     },
     {
+      "source": "/exercicios/save.php",
+      "destination": "/api/exercicios/save.php"
+    },
+    {
+      "source": "/exercicios/delete.php",
+      "destination": "/api/exercicios/delete.php"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/api/index.php?url=$1"
+      "destination": "/api/index.php?url=$1" 
     }
   ],
   "headers": [
