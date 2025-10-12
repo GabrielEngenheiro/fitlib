@@ -15,7 +15,6 @@
       "source": "/assets/(.*)",
       "destination": "/public/assets/$1"
     },
-
     {
       "source": "/login.php",
       "destination": "/api/login.php"

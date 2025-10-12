@@ -48,7 +48,7 @@ try {
     $stmt->execute();
 
     // Redireciona para a página de listagem após o sucesso
-    header('Location: equipamentos');
+    header('Location: /equipamentos');
     exit;
 
 } catch (PDOException $e) {

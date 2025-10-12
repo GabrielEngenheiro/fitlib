@@ -79,8 +79,8 @@ try {
                 <tr>
                     <td><?= htmlspecialchars($grupo['nome']) ?></td>
                     <td>
-                        <a href="/grupos_musculares/form?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-edit">Editar</a>
-                        <a href="/grupos_musculares/delete?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este grupo muscular?');">Excluir</a>
+                        <a href="/grupos_musculares/form.php?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-edit">Editar</a>
+                        <a href="/grupos_musculares/delete.php?id=<?= $grupo['id_grupo_muscular'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este grupo muscular?');">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

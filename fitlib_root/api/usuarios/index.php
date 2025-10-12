@@ -46,8 +46,8 @@ try {
                     <td><?= htmlspecialchars($usuario['email']) ?></td>
                     <td><?= date('d/m/Y H:i', strtotime($usuario['data_criacao'])) ?></td>
                     <td>
-                        <a href="/usuarios/form?id=<?= $usuario['id_adm'] ?>" class="btn btn-edit">Editar</a>
-                        <a href="/usuarios/delete?id=<?= $usuario['id_adm'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
+                        <a href="/usuarios/form.php?id=<?= $usuario['id_adm'] ?>" class="btn btn-edit">Editar</a>
+                        <a href="/usuarios/delete.php?id=<?= $usuario['id_adm'] ?>" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
