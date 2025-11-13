@@ -42,11 +42,19 @@ if (isset($_GET['id'])) {
 $grupos_musculares = $pdo->query("SELECT * FROM Grupo_muscular ORDER BY nome")->fetchAll();
 $equipamentos = $pdo->query("SELECT * FROM Equipamento ORDER BY nome")->fetchAll();
 
+$error_message = $_SESSION['error_message'] ?? null;
+unset($_SESSION['error_message']);
+
 ?>
 
 <h1><?= htmlspecialchars($pageTitle) ?></h1>
 
-<form action="/exercicios/save.php" method="POST">
+<?php if ($error_message): ?>
+    <div class="alert-danger" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px; border-radius: 5px;">
+        <?= htmlspecialchars($error_message) ?>
+    </div>
+<?php endif; ?>
+<form action="save.php" method="POST">
     <?php if ($isEditing): ?>
         <input type="hidden" name="id_exercicio" value="<?= $exercicio['id_exercicio'] ?>">
     <?php endif; ?>
