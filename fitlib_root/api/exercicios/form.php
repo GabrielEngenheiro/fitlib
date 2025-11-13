@@ -90,19 +90,9 @@ unset($_SESSION['error_message']);
         <?php endforeach; ?>
     </select>
 
-
     <label for="gif_file">GIF do Exercício</label>
-    
-    <?php if (!empty($exercicio['gif_path'])): ?>
-        <div style="margin-bottom: 10px;">
-            <img src="<?= htmlspecialchars($exercicio['gif_path']) ?>" alt="GIF Atual" style="max-width: 200px; max-height: 200px; border-radius: 5px;">
-        </div>
-    <?php endif; ?>
 
-    <input type="file" id="gif_file" name="gif_file" accept="image/gif, image/jpeg, image/png, image/webp">
-
-    <input type="hidden" name="current_gif_path" value="<?= htmlspecialchars($exercicio['gif_path']) ?>">
-    
+    <input type="text" name="current_gif_path" value="<?= htmlspecialchars($exercicio['gif_path']) ?>">
 
     <button type="submit" class="btn btn-save">Salvar</button>
 </form>

@@ -30,40 +30,6 @@ $id_adm_cadastro = $_SESSION['id_adm'];
 // Pega o caminho do GIF atual (enviado pelo campo oculto)
 $gif_path = $_POST['current_gif_path']; 
 
-// --- NOVO BLOCO DE LÓGICA DE UPLOAD DE ARQUIVO ---
-
-// Verifica se um novo arquivo foi enviado com sucesso
-if (isset($_FILES['gif_file']) && $_FILES['gif_file']['error'] === UPLOAD_ERR_OK) {
-    
-    // Define o diretório de upload no SERVIDOR
-    // __DIR__ é 'api/exercicios', subimos 2 níveis para 'fitlib_root/'
-    $uploadDir = __DIR__ . '/../../public/images/uploads/gifs/';
-
-    // Garante que o diretório existe (segurança extra)
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
-
-    // Pega o nome do arquivo
-    $filename = basename($_FILES['gif_file']['name']);
-    $targetPath = $uploadDir . $filename;
-
-    // Move o arquivo temporário para o destino final
-    if (move_uploaded_file($_FILES['gif_file']['tmp_name'], $targetPath)) {
-        // Se o upload foi um sucesso, define o novo caminho para o banco de dados
-        // (Este é o caminho PÚBLICO que o navegador vai usar)
-        $gif_path = '/images/uploads/gifs/' . $filename;
-    } else {
-        // Se falhar, avisa o usuário e volta
-        $_SESSION['error_message'] = "Erro ao mover o arquivo de upload.";
-        $redirect_url = $id_exercicio ? 'form.php?id=' . $id_exercicio : 'form.php';
-        header('Location: ' . $redirect_url);
-        exit;
-    }
-}
-// --- FIM DO BLOCO DE UPLOAD ---
-
-
 // --- VERIFICAÇÃO DE NOME DUPLICADO (JÁ EXISTENTE) ---
 $query_check = "SELECT id_exercicio FROM Exercicio WHERE nome = :nome";
 $params_check = [':nome' => $nome];
@@ -82,7 +48,6 @@ if ($stmt_check->fetch()) {
     header('Location: ' . $redirect_url);
     exit;
 }
-// --- FIM DA VERIFKAÇÃO ---
 
 try {
     if ($id_exercicio) {
