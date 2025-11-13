@@ -69,5 +69,10 @@ try {
     exit;
 
 } catch (PDOException $e) {
-    die("Erro ao salvar o exercício: " . $e->getMessage());
+    $_SESSION['flash_message'] = [
+        'type' => 'error',
+        'text' => 'Erro ao salvar o exercício. Detalhes: ' . $e->getMessage()
+    ];
+    header('Location: ' . $_SERVER['HTTP_REFERER']); // Volta para a página anterior (o formulário)
+    exit;
 }

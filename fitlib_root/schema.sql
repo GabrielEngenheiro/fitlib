@@ -1,11 +1,9 @@
 -- Cria o banco de dados se ele não existir, utilizando um conjunto de caracteres
 -- que suporta emojis e caracteres especiais (utf8mb4).
-CREATE DATABASE IF NOT EXISTS fitlib_db
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
 -- Seleciona o banco de dados recém-criado para executar os comandos seguintes.
-USE fitlib_db;
 
 -- -----------------------------------------------------
 -- Exclusão de Tabelas (em ordem reversa de dependência)
