@@ -4,5 +4,6 @@
 
     </div> <!-- Fecha .main-content -->
 
+    </div> <script src="/assets/js/main.js"></script>
 </body>
 </html>
