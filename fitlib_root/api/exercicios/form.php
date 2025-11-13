@@ -42,6 +42,7 @@ if (isset($_GET['id'])) {
 $grupos_musculares = $pdo->query("SELECT * FROM Grupo_muscular ORDER BY nome")->fetchAll();
 $equipamentos = $pdo->query("SELECT * FROM Equipamento ORDER BY nome")->fetchAll();
 
+// --- Pega a mensagem de erro da sessão (se houver) ---
 $error_message = $_SESSION['error_message'] ?? null;
 unset($_SESSION['error_message']);
 
@@ -54,7 +55,8 @@ unset($_SESSION['error_message']);
         <?= htmlspecialchars($error_message) ?>
     </div>
 <?php endif; ?>
-<form action="save.php" method="POST">
+
+<form action="save.php" method="POST" enctype="multipart/form-data">
     <?php if ($isEditing): ?>
         <input type="hidden" name="id_exercicio" value="<?= $exercicio['id_exercicio'] ?>">
     <?php endif; ?>
@@ -88,8 +90,19 @@ unset($_SESSION['error_message']);
         <?php endforeach; ?>
     </select>
 
-    <label for="gif_path">Caminho do GIF</label>
-    <input type="text" id="gif_path" name="gif_path" value="<?= htmlspecialchars($exercicio['gif_path']) ?>" placeholder="/gifs/nome_do_gif.gif" required>
+
+    <label for="gif_file">GIF do Exercício</label>
+    
+    <?php if (!empty($exercicio['gif_path'])): ?>
+        <div style="margin-bottom: 10px;">
+            <img src="<?= htmlspecialchars($exercicio['gif_path']) ?>" alt="GIF Atual" style="max-width: 200px; max-height: 200px; border-radius: 5px;">
+        </div>
+    <?php endif; ?>
+
+    <input type="file" id="gif_file" name="gif_file" accept="image/gif, image/jpeg, image/png, image/webp">
+
+    <input type="hidden" name="current_gif_path" value="<?= htmlspecialchars($exercicio['gif_path']) ?>">
+    
 
     <button type="submit" class="btn btn-save">Salvar</button>
 </form>
