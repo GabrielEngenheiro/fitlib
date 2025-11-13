@@ -34,9 +34,19 @@ if (isset($_GET['id'])) {
     $equipamento = $stmt->fetch();
 }
 
+$error_message = $_SESSION['error_message'] ?? null;
+unset($_SESSION['error_message']);
 ?>
 
 <h1><?= htmlspecialchars($pageTitle) ?></h1>
+
+<?php if ($error_message): ?>
+    <div class="alert-danger" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px; border-radius: 5px;">
+        <?= htmlspecialchars($error_message) ?>
+    </div>
+<?php endif; ?>
+
+<form action="save.php" method="POST">
 
 <div class="card">
     <form action="/equipamentos/save.php" method="POST">
@@ -53,3 +63,4 @@ if (isset($_GET['id'])) {
         <button type="submit" class="btn btn-save">Salvar</button>
     </form>
 </div>
+
