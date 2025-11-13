@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $id_equipamento = $_POST['id_equipamento'] ?? null;
 $nome = $_POST['nome'];
-$qrcode = $_POST['qrcode_equipamento'] ?? null;
+$qrcode = strtoupper($_POST['qrcode_equipamento']) ?? null;
 $id_adm_cadastro = $_SESSION['id_adm'];
 
 // --- VERIFICAÇÃO DE NOME DUPLICADO ---

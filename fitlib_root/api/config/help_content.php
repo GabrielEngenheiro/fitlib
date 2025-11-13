@@ -51,6 +51,12 @@ function getHelpContent($pageKey) {
             - **Grupo/Equipamento:** Associe o exercício às listas cadastradas.
             - **GIF do Exercício:** O campo de texto para o caminho do GIF (ex: /images/uploads/gifs/nome.gif)."
         ],
+        'equipamentos/form' => [
+            'title' => 'Ajuda: Formulário de Equipamento',
+            'description' => "Use esta tela para criar ou editar um equipamento.
+            - **Nome:** O nome oficial do equipamento (deve ser único).
+            - **QRcode:** O QRcode deve conter 3 caracteres alfabéticos."
+        ],
         // Adicione 'equipamentos/form' e 'usuarios/form'
         'default' => [
             'title' => 'Ajuda não encontrada',
